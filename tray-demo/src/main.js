@@ -6,8 +6,8 @@ const path = require('path')
 
 app.on('ready', _ => {
 
-    // new Tray(path.join('src', 'Flat-Enigma.ico'))
-    const tray = new Tray("F:/Projects/_GitHub/Exercise.Electron/menu-demo/src/Flat-Enigma.ico")
+    new Tray(path.join('src', 'Flat-Enigma.ico'))
+    // const tray = new Tray("F:/Projects/_GitHub/Exercise.Electron/menu-demo/src/Flat-Enigma.ico")
 
     const menu = Menu.buildFromTemplate([
         {
