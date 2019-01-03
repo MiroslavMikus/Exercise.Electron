@@ -1,6 +1,6 @@
 const electron = require('electron');
 
-const countdown= require('./countdown.js')
+const countdown = require('./countdown.js').default
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow

@@ -8,7 +8,7 @@ module.exports = function countdown(){
         console.log("count",count);
 
         if (count === 0){
-            clearInterval(timer)
+            clearInterval(timer);
         }
 
     }, 1000)
