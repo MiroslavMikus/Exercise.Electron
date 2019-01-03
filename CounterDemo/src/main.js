@@ -6,27 +6,38 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const ipc = electron.ipcMain
 
-let mainWindow;
+const windows = [] ;
 
-app.on('ready', _ =>{
-    mainWindow = new BrowserWindow({
-        height: 400,
-        width: 400 
-    })
+app.on('ready', _ => {
 
-    mainWindow.loadURL(`file://${__dirname}/countdown.html`);
+    [1,2,3,].forEach(_ => {
+        let win = new BrowserWindow({
+            height: 400,
+            width: 400 
+        })
+        
+        win.loadURL(`file://${__dirname}/countdown.html`);
+        
+        win.on('closed', _ => {
 
-    // countdown();
+            // Closing window will update windows array as well.
+            windows.splice(windows.indexOf(win),1);
 
-    mainWindow.on('closed',_=>{
+            console.log('Closed!');
+        })
 
-        mainWindow = null;
-        console.log('Closed!');
+        windows.push(win);
     })
 })
 
 ipc.on('countdown-start', _ =>{
-    countdown(count=>{
-        mainWindow.webContents.send('countdown', count);
+    console.log("Caught countdownt start event");
+
+    countdown(count => {
+        console.log("Count ", count);
+
+        windows.forEach(win => {
+            win.webContents.send('countdown', count);
+        })
     });
 });
