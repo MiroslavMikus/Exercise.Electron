@@ -19,6 +19,7 @@ function checkClipboardForChange(clipboard, onChange){
 }
 
 function addToStack(item, stack){
+    console.log(stack.length)
     return [item].concat(stack.length >= STACK_SIZE ? stack.slice(0, stack.length -1) : stack)
 }
 
@@ -33,11 +34,12 @@ app.on('ready',_ => {
         }
     ]))
 
+    let stack = []
+    
     checkClipboardForChange(clipboard, text => {
-        let stack = []
 
-        addToStack(text, stack)
+        stack = addToStack(text, stack)
 
-        console.log('stack', stack.Count())
+        console.log('stack', stack)
     })
 })
