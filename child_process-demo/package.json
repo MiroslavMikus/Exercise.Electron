@@ -4,12 +4,15 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
+    "build": "rimraf CheckGit-* && electron-packager . --platform=win32 --arch=x64 --icon=Elixir-ELIX-icon",
     "start": "electron ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^4.0.0"
+    "electron": "^4.0.0",
+    "electron-packager": "^13.0.1",
+    "rimraf": "^2.6.3"
   }
 }
