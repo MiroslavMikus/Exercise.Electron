@@ -51,6 +51,8 @@ function setStatus(status){
 
 document.getElementById('input').addEventListener('keyup', evt =>{
 
+    removeStatus()
+    
     clearTimeout(timer)
 
     timer = setTimeout(_ => {
