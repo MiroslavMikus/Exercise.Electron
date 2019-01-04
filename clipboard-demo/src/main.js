@@ -33,7 +33,8 @@ function formatMenuTemplateForStack(clipboard, stack){
     return stack.map((item, i) => {
         return {
             label: `Copy ${formatItem(item)}`,
-            click: _ => clipboard.writeText(item)
+            click: _ => clipboard.writeText(item),
+            accelerator: `Ctrl+Alt+${i+1}`
         }
     }).concat([quitLabel])
 }
@@ -83,4 +84,8 @@ app.on('ready',_ => {
             registerShortcuts(globalShortcut, clipboard, stack)
         }
     })
+})
+
+app.on('will-quit', _ => {
+    globalShortcut.unregisterAll()
 })
